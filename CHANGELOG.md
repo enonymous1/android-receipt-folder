@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.2 — 2026-10-30
+
+Fixes the second CI run, which got past configuration (22 tasks ran)
+and then failed at `:app:processDebugResources` with AAPT:
+`Theme.Material3.DayNight.NoActionBar not found`.
+
+- Restored `com.google.android.material:material` 1.11.0. The
+  `Theme.Material3.DayNight.NoActionBar` style that `values/themes.xml`
+  inherits from lives in that Views library, not in Compose's
+  `androidx.compose.material3`, which the UI itself uses. Dropping the
+  Views library while keeping its theme parent was the whole defect;
+  no screen, theme, or app code changed.
+- Bumped `versionName` to 2.0.2.
+
 ## 2.0.1 — 2026-10-30
 
 Fixes the first CI run, which failed in 42s at project configuration,
