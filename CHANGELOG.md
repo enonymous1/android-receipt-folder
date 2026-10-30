@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.1 — 2026-10-30
+
+Fixes the first CI run, which failed in 42s at project configuration,
+before any code compiled. No app code changed.
+
+- Added the Room Gradle plugin's required `room { schemaDirectory(...) }`
+  block to `app/build.gradle.kts`, pointing at `app/schemas`. Room 2.7
+  fails configuration outright without it, even though this database
+  sets `exportSchema = false` and exports nothing. The failure was a
+  build-configuration verdict, not a verdict on the app code or tests.
+- Bumped `versionName` to 2.0.1.
+
 ## 2.0.0 — 2026-10-30
 
 Standalone modernization of the October 2023 Java/Views project

@@ -16,7 +16,7 @@ android {
         minSdk = 24
         targetSdk = 36
         versionCode = 1
-        versionName = "2.0.0"
+        versionName = "2.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,6 +38,14 @@ android {
     buildFeatures {
         compose = true
     }
+}
+
+// The Room Gradle plugin (2.7) fails project configuration outright if no
+// schema location is set, even though this database sets exportSchema = false
+// and exports nothing. Pointing it at app/schemas satisfies the check;
+// the directory stays empty until exportSchema is ever turned on.
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 kotlin {
