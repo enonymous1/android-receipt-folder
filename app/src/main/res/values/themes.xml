@@ -1,0 +1,7 @@
+<resources>
+    <!-- Base application theme. The UI itself is drawn with Compose Material 3. -->
+    <style name="Base.Theme.ReceiptFolder" parent="Theme.Material3.DayNight.NoActionBar">
+    </style>
+
+    <style name="Theme.ReceiptFolder" parent="Base.Theme.ReceiptFolder" />
+</resources>

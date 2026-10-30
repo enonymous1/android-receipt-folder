@@ -1,0 +1,16 @@
+// Reference only: NOT active in v2, which is local-first and ships no
+// Firebase dependency. If cloud sync is ever re-added, use per-user paths
+// like users/{uid}/receipts/{receiptId} and rules like these, never v1's
+// shared "Trial Run" collection, which every signed-out user could read
+// and write.
+// rules_version = '2';
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /users/{userId}/receipts/{receiptId} {
+//       allow read, write: if request.auth != null && request.auth.uid == userId;
+//     }
+//     match /{document=**} {
+//       allow read, write: if false;
+//     }
+//   }
+// }
