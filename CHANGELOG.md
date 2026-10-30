@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.0.3 — 2026-10-30
+
+Fixes the third CI run (`:app:compileDebugKotlin`):
+`ReceiptViewModel.kt:20:69 — This type has a constructor, so it must
+be initialized here.`
+
+- Changed `class ReceiptViewModel(...) : ViewModel` to
+  `class ReceiptViewModel(...) : ViewModel()`. In Kotlin, a superclass
+  that is a class (as opposed to an interface) must have its
+  constructor invoked, even when it takes no arguments. The column in
+  the error points exactly at `ViewModel` in the superclass position.
+  A scan of the other sources found no other bare class superclass:
+  `RoomDatabase()` and `ComponentActivity()` already had parentheses,
+  and the `ReceiptRepository` / `ViewModelProvider.Factory` supertypes
+  are interfaces, where no parentheses are correct.
+- Bumped `versionName` to 2.0.3.
+
 ## 2.0.2 — 2026-10-30
 
 Fixes the second CI run, which got past configuration (22 tasks ran)

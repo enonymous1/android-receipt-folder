@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  * why the list duplicated itself; here the Room Flow is shared, keyed by
  * receipt id in the list, and never manually appended to.
  */
-class ReceiptViewModel(private val repository: ReceiptRepository) : ViewModel {
+class ReceiptViewModel(private val repository: ReceiptRepository) : ViewModel() {
     val receipts: StateFlow<List<Receipt>> = repository.receipts
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
